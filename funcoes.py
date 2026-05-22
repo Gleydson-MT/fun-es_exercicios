@@ -96,7 +96,7 @@ print(f"Pedro | Média: {media1:.2f} | {situacao1}")
 # linha 2.: def dobrar():
 #             x = 20
 #             print(x)
-# Aqui como o "x" está dentro da função então ele equivale a "20", pois não foi expecificado que fosse ultilizado o "x global", então quando der o print, será retornado o valor de "40"
+# Aqui como o "x" está dentro da função então ele equivale a "20", pois não foi expecificado que fosse ultilizado o "x global", então quando der o print, será retornado o valor de "20"
 # linha 3.: dobrar()
 #           print(x)
 # Aqui esta sendo chamada a função "dobrar()", então será impresso o número 40, logo a baixo ao dar print(x), será exibido o 10, pois está se referindo ao "x global".
@@ -105,11 +105,43 @@ print(f"Pedro | Média: {media1:.2f} | {situacao1}")
 # R: Não, pois o "x" dentro da função pertece a ela mas o "x" de fora se refere ao "x global", ou seja será usado por padrão caso não seja expecificado que se ultilize dentro da função, ele não sofrerá alteração.
 
 # c) Reescreva a função `dobrar` de forma correta: ela deve receber um número por parâmetro, calcular o dobro e **retornar** o resultado. Fora da função, chame-a com `x = 10` e exiba o resultado com `print`.
+x = 10
 
 def dobrar(n):
     x = n * 2
-    return  x
+    return x
+dobro = dobrar(x)
 
-x = 10
+print(f"O dobro de {x} é {dobro}.")
 
-print(f"O dobro de {"global"} é {x}")
+# Q10
+# O código abaixo tem um erro que impede sua execução. Leia-o com atenção e responda as perguntas antes de corrigi-lo.
+
+# ```python
+# contador = 0
+
+# def incrementar():
+#     contador += 1
+
+# incrementar()
+# incrementar()
+# incrementar()
+# print(contador)
+# ```
+
+# **Responda:**
+# a) Execute o código e anote o erro exibido pelo Python. Pesquise ou explique com suas palavras o que significa `UnboundLocalError` e por que ele ocorre aqui.
+# R: ErroDeVariávelLocalNãoVinculada Isso de deu pois o "contador = 0", está fora da função, já o "contador =1", soma "1" ao contador, mas como o "contador=0" está fora da função ele não está sendo somado, logo quando se da o print(), erro vem pois dentro da função não tem nada para se somar quando se ultiliza o "contador =1".
+
+
+# b) Reescreva o programa **sem usar `global`**, usando parâmetro e `return`. A função `incrementar` deve receber o valor atual do contador e retornar o valor incrementado. Fora da função, chame-a três vezes e armazene o resultado de volta na variável `contador` a cada chamada.
+
+contador = 0
+
+def incrementar(num):
+    num += 1
+    return num
+contador = incrementar(contador)
+contador = incrementar(contador)
+contador = incrementar(contador)
+print(contador)
